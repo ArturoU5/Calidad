@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!--
+    =====================================================================
+    ARCHIVO DE CONFIGURACIÓN DE TESTNG
+    =====================================================================
+    Este archivo le dice a TestNG:
+      - Cómo se llama la suite de pruebas
+      - Qué clases de prueba debe ejecutar
+
+    No necesitas modificarlo a menos que quieras agregar más clases de prueba.
+    =====================================================================
+-->
+<suite name="Suite de Pruebas - Adidas PE" verbose="2">
+
+    <test name="Flujo de Compra - Adidas">
+        <classes>
+            <!-- La clase que contiene nuestras pruebas -->
+            <class name="com.adidas.tests.AdidasCompraTest"/>
+        </classes>
+    </test>
+
+</suite>
