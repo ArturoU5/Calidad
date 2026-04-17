@@ -129,16 +129,16 @@
                   <a name="flujoCompletoCompraAdidas">
                   </a> <!-- flujoCompletoCompraAdidas -->
                   <span class="method-name">flujoCompletoCompraAdidas</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.cssSelector: input[type=&apos;password&apos;], input[name=&apos;password&apos;], #password (tried for 20 second(s) with 500 milliseconds interval)
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.cssSelector: input[type=&apos;email&apos;], input[name=&apos;email&apos;], #email, input[id*=&apos;email&apos;] (tried for 20 second(s) with 500 milliseconds interval)
 Build info: version: &apos;4.18.1&apos;, revision: &apos;b1d3319b48&apos;
 System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.6&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.102, chrome: {chromedriverVersion: 147.0.7727.57 (b4f28b5637d0..., userDataDir: C:\Users\artur\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56946}, goog:processID: 8872, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56946/devtoo..., se:cdpVersion: 147.0.7727.102, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 648b4ba2913e9ceda65f554823a8998b
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.102, chrome: {chromedriverVersion: 147.0.7727.57 (b4f28b5637d0..., userDataDir: C:\Users\artur\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64708}, goog:processID: 11232, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64708/devtoo..., se:cdpVersion: 147.0.7727.102, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 83d0d47d3f21969c0f6cefc9c550d297
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at com.adidas.tests.AdidasCompraTest.paso2_IniciarSesion(AdidasCompraTest.java:253)
-	at com.adidas.tests.AdidasCompraTest.flujoCompletoCompraAdidas(AdidasCompraTest.java:133)
+	at com.adidas.tests.AdidasCompraTest.paso2_IniciarSesion(AdidasCompraTest.java:189)
+	at com.adidas.tests.AdidasCompraTest.flujoCompletoCompraAdidas(AdidasCompraTest.java:127)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 ... Removed 29 stack frames
 </div> <!-- stack-trace -->
@@ -202,7 +202,7 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'flujoCompletoCompraAdidas')
 data.setCell(0, 2, 'com.adidas.tests.AdidasCompraTest')
-data.setCell(0, 3, 60183);
+data.setCell(0, 3, 90467);
 window.suiteTableData['Suite_de_Pruebas___Adidas_PE']= { tableData: data, tableDiv: 'times-div-Suite_de_Pruebas___Adidas_PE'}
 return data;
 }
@@ -242,11 +242,11 @@ return data;
                 <img src="failed.png">
                 </img>
                 <span class="method-name">flujoCompletoCompraAdidas</span>
-                <span class="method-start">1111 ms</span>
+                <span class="method-start">1200 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-suite after">
                 <span class="method-name">cerrarNavegador</span>
-                <span class="method-start">61319 ms</span>
+                <span class="method-start">91688 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

@@ -1,8 +1,3 @@
-package com.adidas.tests;
-
-// ============================================================
-// IMPORTACIONES: Le decimos a Java qué librerías vamos a usar
-// ============================================================
 import java.time.Duration;
 import java.util.List;
 
@@ -160,6 +155,9 @@ public class AdidasCompraTest {
         // Pequeña pausa para dejar que los scripts de la página terminen de cargar
         esperarMilisegundos(2000);
 
+        // Manejar específicamente el popup de cookies que puede bloquear la página
+        manejarPopupCookies();
+
         // Intentamos cerrar cualquier popup/banner inicial que aparezca
         cerrarPopupsIniciales();
     }
@@ -176,13 +174,8 @@ public class AdidasCompraTest {
         // Probamos diferentes selectores porque el sitio puede usar distintos elementos
         WebElement iconoCuenta = encontrarElemento(
             By.cssSelector("[data-auto-id='glass-header-desktop-link-account']"),
-            By.cssSelector("[data-auto-id='customer-info-button']"),  // New selector from HTML
             By.cssSelector("[class*='account']"),
-            By.cssSelector("._user_icon_xw3y3_1"),  // Class from HTML
-            By.xpath("//a[contains(@href,'login') or contains(@data-auto-id,'account')]"),
-            By.xpath("//*[svg[@viewBox='0 0 32 32']]"),  // Element containing the user icon SVG
-            By.xpath("//a[@href*='login']"),  // Direct link to login
-            By.xpath("//button[@aria-label='Account' or @aria-label='Login' or @aria-label='Iniciar sesión' or @aria-label='Regístrate o inicia sesión en adiClub ']")  // Button with aria-label
+            By.xpath("//a[contains(@href,'login') or contains(@data-auto-id,'account')]")
         );
 
         if (iconoCuenta != null) {
@@ -199,30 +192,16 @@ public class AdidasCompraTest {
         // ---- Ingresar el email ----
         WebElement campoEmail = wait.until(
             ExpectedConditions.elementToBeClickable(
-                By.cssSelector("input[type='email'], input[name='email'], #email, input[id*='email'], #username")
+                By.cssSelector("input[type='email'], input[name='email'], #email, input[id*='email']")
             )
         );
         campoEmail.clear();                    // Limpiamos el campo por si tiene texto previo
         campoEmail.sendKeys(EMAIL);            // Escribimos el email
         System.out.println("✓ Email ingresado");
 
-        esperarMilisegundos(3000);  // Increased wait after entering email
-
-        // ---- Aceptar checkbox de términos y condiciones ----
-        esperarMilisegundos(1000);  // Wait for checkbox to appear
-        try {
-            WebElement checkbox = driver.findElement(By.name("doc-account-tnc-pp:adidas:pe:202239"));
-            if (!checkbox.isSelected()) {
-                checkbox.click();
-                System.out.println("✓ Checkbox de términos aceptado");
-            }
-        } catch (Exception e) {
-            System.out.println("! Checkbox no encontrado o ya aceptado");
-        }
-        esperarMilisegundos(1000);  // Wait after accepting checkbox
+        esperarMilisegundos(500);
 
         // ---- Clic en "Continuar" ----
-        esperarMilisegundos(2000);  // Additional wait before finding continue button
         WebElement botonContinuar = encontrarElemento(
             By.cssSelector("button[type='submit']"),
             By.xpath("//button[contains(text(),'Continuar') or contains(text(),'Continue')]"),
@@ -234,20 +213,7 @@ public class AdidasCompraTest {
             System.out.println("✓ Clic en Continuar");
         }
 
-        esperarMilisegundos(5000);  // Increased wait after clicking continue
-
-        // Check for error messages
-        try {
-            WebElement errorMsg = driver.findElement(By.xpath("//*[contains(text(),'Ocurrió un error') or contains(text(),'error') or contains(text(),'Error')]"));
-            if (errorMsg.isDisplayed()) {
-                System.out.println("❌ Error encontrado después de Continuar: " + errorMsg.getText());
-                throw new RuntimeException("Error en login: " + errorMsg.getText());
-            }
-        } catch (Exception e) {
-            // No error found, continue
-        }
-
-        // ---- Ingresar la contraseña ----
+        esperarMilisegundos(2000);
 
         // ---- Ingresar la contraseña ----
         WebElement campoPassword = wait.until(
@@ -550,31 +516,123 @@ public class AdidasCompraTest {
     // ============================================================
 
     /**
+     * Maneja específicamente el popup de consentimiento de cookies que puede aparecer
+     * al cargar la página de Adidas. Intenta aceptar o rechazar las cookies para continuar.
+     */
+    private void manejarPopupCookies() {
+        System.out.println("Intentando manejar popup de cookies...");
+
+        // Esperamos hasta 10 segundos para que aparezca el popup de cookies
+        WebDriverWait waitCookies = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Selectores comunes para popups de cookies en Adidas y otros sitios
+        String[] selectoresCookies = {
+            "[data-testid='uc-accept-all-button']",      // Usercentrics Accept All
+            "[data-testid='uc-deny-all-button']",        // Usercentrics Deny All (preferido para testing)
+            "#usercentrics-root button[data-testid='uc-accept-all-button']",
+            "#usercentrics-root button[data-testid='uc-deny-all-button']",
+            "[data-auto-id='cookie-accept-all-button']",
+            "[data-auto-id='cookie-reject-all-button']",
+            ".cookie-consent__accept-all",
+            ".cookie-consent__reject-all",
+            "button[class*='cookie-accept']",
+            "button[class*='cookie-reject']"
+        };
+
+        for (String selector : selectoresCookies) {
+            try {
+                WebElement botonCookie = waitCookies.until(
+                    ExpectedConditions.elementToBeClickable(By.cssSelector(selector))
+                );
+                if (botonCookie.isDisplayed() && botonCookie.isEnabled()) {
+                    // Preferimos rechazar cookies para evitar trackers que puedan interferir
+                    if (selector.contains("deny") || selector.contains("reject") || selector.contains("uc-deny")) {
+                        botonCookie.click();
+                        System.out.println("✓ Cookies rechazadas (mejor para testing)");
+                    } else {
+                        botonCookie.click();
+                        System.out.println("✓ Cookies aceptadas");
+                    }
+                    esperarMilisegundos(2000);
+                    return; // Salimos después de manejar el popup
+                }
+            } catch (Exception e) {
+                // Selector no encontrado, continuamos con el siguiente
+            }
+        }
+
+        // Si no encontramos con selectores, intentamos con texto de botones
+        String[] textosCookies = {"Rechazar todas", "Deny All", "Reject All", "No aceptar", "Decline", "Rechazar", "Deny"};
+        for (String texto : textosCookies) {
+            try {
+                WebElement boton = waitCookies.until(
+                    ExpectedConditions.elementToBeClickable(
+                        By.xpath("//button[contains(text(),'" + texto + "')]")
+                    )
+                );
+                if (boton.isDisplayed() && boton.isEnabled()) {
+                    boton.click();
+                    System.out.println("✓ Cookies rechazadas con texto: " + texto);
+                    esperarMilisegundos(2000);
+                    return;
+                }
+            } catch (Exception e) {
+                // No encontrado
+            }
+        }
+
+        // Si aún no encontramos, intentamos aceptar como último recurso
+        String[] textosAceptar = {"Aceptar todas", "Accept All", "Aceptar", "Accept", "Continuar", "Continue"};
+        for (String texto : textosAceptar) {
+            try {
+                WebElement boton = driver.findElement(By.xpath("//button[contains(text(),'" + texto + "')]"));
+                if (boton.isDisplayed() && boton.isEnabled()) {
+                    boton.click();
+                    System.out.println("✓ Cookies aceptadas con texto: " + texto + " (último recurso)");
+                    esperarMilisegundos(2000);
+                    return;
+                }
+            } catch (Exception e) {
+                // No encontrado
+            }
+        }
+
+        System.out.println("! No se encontró popup de cookies visible, o ya fue manejado");
+    }
+
+
+    /**
      * Intenta cerrar banners/popups genéricos que pueden aparecer al cargar la página.
      * No falla si no hay nada que cerrar.
      */
-    private void cerrarPopupsIniciales() {
-        String[] selectoresCierre = {
-            "button[aria-label='Close']",
-            "button[aria-label='Cerrar']",
-            "[data-auto-id='modal-close-btn']",
-            ".gl-modal__close",
-            "[class*='close-button']",
-            "[data-auto-id='cookie-accept-button']",
-            "#glass-gdpr-default-consent-accept-button"
-        };
-
-        for (String selector : selectoresCierre) {
             try {
                 List<WebElement> botones = driver.findElements(By.cssSelector(selector));
                 for (WebElement boton : botones) {
-                    if (boton.isDisplayed()) {
+                    if (boton.isDisplayed() && boton.isEnabled()) {
                         boton.click();
-                        esperarMilisegundos(500);
+                        System.out.println("✓ Popup/cookie cerrado con selector: " + selector);
+                        esperarMilisegundos(1000);
+                        return; // Cerramos uno y salimos para evitar clics múltiples
                     }
                 }
             } catch (Exception e) {
                 // Ignoramos errores aquí; si no hay popup, está bien
+            }
+        }
+
+        // También intentamos con XPath para botones de texto común
+        String[] textosBoton = {"Aceptar", "Accept", "Aceptar todas", "Accept All", "Rechazar", "Reject", "Deny", "Continuar", "Continue"};
+        for (String texto : textosBoton) {
+            try {
+                WebElement boton = driver.findElement(By.xpath("//button[contains(text(),'" + texto + "')]"));
+                if (boton.isDisplayed() && boton.isEnabled()) {
+                    boton.click();
+                    System.out.println("✓ Popup/cookie cerrado con texto: " + texto);
+                    esperarMilisegundos(1000);
+                    return;
+                }
+            } catch (Exception e) {
+                // No encontrado, continuamos
             }
         }
     }

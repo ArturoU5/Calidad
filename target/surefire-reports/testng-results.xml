@@ -2,36 +2,36 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-04-16T01:15:16 PET" name="Suite de Pruebas - Adidas PE" finished-at="2026-04-16T01:16:16 PET" duration-ms="60205">
+  <suite started-at="2026-04-15T23:12:34 PET" name="Suite de Pruebas - Adidas PE" finished-at="2026-04-15T23:14:04 PET" duration-ms="90490">
     <groups>
     </groups>
-    <test started-at="2026-04-16T01:15:16 PET" name="Flujo de Compra - Adidas" finished-at="2026-04-16T01:16:16 PET" duration-ms="60205">
+    <test started-at="2026-04-15T23:12:34 PET" name="Flujo de Compra - Adidas" finished-at="2026-04-15T23:14:04 PET" duration-ms="90490">
       <class name="com.adidas.tests.AdidasCompraTest">
-        <test-method is-config="true" signature="configurarNavegador()[pri:0, instance:com.adidas.tests.AdidasCompraTest@5158b42f]" started-at="2026-04-16T01:15:15 PET" name="configurarNavegador" finished-at="2026-04-16T01:15:16 PET" duration-ms="1095" status="PASS">
+        <test-method is-config="true" signature="configurarNavegador()[pri:0, instance:com.adidas.tests.AdidasCompraTest@5c5eefef]" started-at="2026-04-15T23:12:32 PET" name="configurarNavegador" finished-at="2026-04-15T23:12:34 PET" duration-ms="1183" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- configurarNavegador -->
-        <test-method signature="flujoCompletoCompraAdidas()[pri:0, instance:com.adidas.tests.AdidasCompraTest@5158b42f]" started-at="2026-04-16T01:15:16 PET" name="flujoCompletoCompraAdidas" finished-at="2026-04-16T01:16:16 PET" duration-ms="60183" status="FAIL">
+        <test-method signature="flujoCompletoCompraAdidas()[pri:0, instance:com.adidas.tests.AdidasCompraTest@5c5eefef]" started-at="2026-04-15T23:12:34 PET" name="flujoCompletoCompraAdidas" finished-at="2026-04-15T23:14:04 PET" duration-ms="90467" status="FAIL">
           <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Expected condition failed: waiting for element to be clickable: By.cssSelector: input[type='password'], input[name='password'], #password (tried for 20 second(s) with 500 milliseconds interval)
+              <![CDATA[Expected condition failed: waiting for element to be clickable: By.cssSelector: input[type='email'], input[name='email'], #email, input[id*='email'] (tried for 20 second(s) with 500 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.102, chrome: {chromedriverVersion: 147.0.7727.57 (b4f28b5637d0..., userDataDir: C:\Users\artur\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56946}, goog:processID: 8872, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56946/devtoo..., se:cdpVersion: 147.0.7727.102, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 648b4ba2913e9ceda65f554823a8998b]]>
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.102, chrome: {chromedriverVersion: 147.0.7727.57 (b4f28b5637d0..., userDataDir: C:\Users\artur\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64708}, goog:processID: 11232, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64708/devtoo..., se:cdpVersion: 147.0.7727.102, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 83d0d47d3f21969c0f6cefc9c550d297]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.cssSelector: input[type='password'], input[name='password'], #password (tried for 20 second(s) with 500 milliseconds interval)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.cssSelector: input[type='email'], input[name='email'], #email, input[id*='email'] (tried for 20 second(s) with 500 milliseconds interval)
 Build info: version: '4.18.1', revision: 'b1d3319b48'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.6'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.102, chrome: {chromedriverVersion: 147.0.7727.57 (b4f28b5637d0..., userDataDir: C:\Users\artur\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56946}, goog:processID: 8872, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56946/devtoo..., se:cdpVersion: 147.0.7727.102, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 648b4ba2913e9ceda65f554823a8998b
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.102, chrome: {chromedriverVersion: 147.0.7727.57 (b4f28b5637d0..., userDataDir: C:\Users\artur\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64708}, goog:processID: 11232, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64708/devtoo..., se:cdpVersion: 147.0.7727.102, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 83d0d47d3f21969c0f6cefc9c550d297
 at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at com.adidas.tests.AdidasCompraTest.paso2_IniciarSesion(AdidasCompraTest.java:253)
-at com.adidas.tests.AdidasCompraTest.flujoCompletoCompraAdidas(AdidasCompraTest.java:133)
+at com.adidas.tests.AdidasCompraTest.paso2_IniciarSesion(AdidasCompraTest.java:189)
+at com.adidas.tests.AdidasCompraTest.flujoCompletoCompraAdidas(AdidasCompraTest.java:127)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
@@ -68,7 +68,7 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- flujoCompletoCompraAdidas -->
-        <test-method is-config="true" signature="cerrarNavegador()[pri:0, instance:com.adidas.tests.AdidasCompraTest@5158b42f]" started-at="2026-04-16T01:16:16 PET" name="cerrarNavegador" finished-at="2026-04-16T01:16:16 PET" duration-ms="204" status="PASS">
+        <test-method is-config="true" signature="cerrarNavegador()[pri:0, instance:com.adidas.tests.AdidasCompraTest@5c5eefef]" started-at="2026-04-15T23:14:04 PET" name="cerrarNavegador" finished-at="2026-04-15T23:14:04 PET" duration-ms="209" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cerrarNavegador -->
